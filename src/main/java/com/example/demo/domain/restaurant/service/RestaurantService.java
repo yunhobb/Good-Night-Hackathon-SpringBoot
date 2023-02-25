@@ -1,6 +1,7 @@
 package com.example.demo.domain.restaurant.service;
 
 import com.example.demo.domain.restaurant.domain.entity.Restaurant;
+import com.example.demo.domain.restaurant.domain.entity.Type;
 import com.example.demo.domain.restaurant.domain.repository.RestaurantRepository;
 import com.example.demo.domain.restaurant.dto.RestaurantCreateRequestDto;
 import com.example.demo.domain.restaurant.dto.RestaurantUpdateRequestDto;
@@ -44,6 +45,13 @@ public class RestaurantService {
     @Transactional(readOnly = true)
     public List<RestaurantListResponseDto> searchAll() {
         return restaurantRepository.findAll().stream()
+                .map(RestaurantListResponseDto::new)
+                .collect(Collectors.toList());
+    }
+
+    @Transactional(readOnly = true)
+    public List<RestaurantListResponseDto> searchByType(Type type) {
+        return restaurantRepository.findByType(type).stream()
                 .map(RestaurantListResponseDto::new)
                 .collect(Collectors.toList());
     }

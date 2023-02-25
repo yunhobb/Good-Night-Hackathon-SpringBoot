@@ -1,5 +1,6 @@
 package com.example.demo.domain.restaurant.controller;
 
+import com.example.demo.domain.restaurant.domain.entity.Type;
 import com.example.demo.domain.restaurant.dto.RestaurantCreateRequestDto;
 import com.example.demo.domain.restaurant.dto.RestaurantUpdateRequestDto;
 import com.example.demo.domain.restaurant.dto.response.RestaurantListResponseDto;
@@ -35,5 +36,10 @@ public class RestaurantController {
     @GetMapping
     public List<RestaurantListResponseDto> searchAll() {
         return restaurantService.searchAll();
+    }
+
+    @GetMapping("/categories")
+    public List<RestaurantListResponseDto> searchByType(@RequestParam("type") Type type) {
+        return restaurantService.searchByType(type);
     }
 }
