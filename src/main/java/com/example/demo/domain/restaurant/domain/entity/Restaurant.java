@@ -14,6 +14,8 @@ import java.util.List;
 @Getter
 @Entity
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
+//@SQLDelete(sql = "UPDATE restaurant SET deleted = true WHERE id = ?")
+//@Where(clause = "isDeleted = false")
 public class Restaurant extends BasetimeEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
@@ -29,7 +31,7 @@ public class Restaurant extends BasetimeEntity {
     @OneToMany(mappedBy = "restaurant")
     private List<Review> reviews = new ArrayList<>();
 
-    private Boolean isDeleted;
+    private Boolean isDeleted = Boolean.FALSE;
 
     @Builder
     public Restaurant(String name, Type type) {

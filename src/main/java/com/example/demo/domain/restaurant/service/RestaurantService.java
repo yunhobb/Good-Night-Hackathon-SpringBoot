@@ -4,7 +4,7 @@ import com.example.demo.domain.restaurant.domain.entity.Restaurant;
 import com.example.demo.domain.restaurant.domain.entity.Type;
 import com.example.demo.domain.restaurant.domain.repository.RestaurantRepository;
 import com.example.demo.domain.restaurant.dto.RestaurantCreateRequestDto;
-import com.example.demo.domain.restaurant.dto.RestaurantUpdateRequestDto;
+import com.example.demo.domain.restaurant.dto.RestaurantTypeUpdateRequestDto;
 import com.example.demo.domain.restaurant.dto.response.RestaurantListResponseDto;
 import com.example.demo.domain.restaurant.dto.response.RestaurantResponseDto;
 import lombok.AccessLevel;
@@ -26,7 +26,7 @@ public class RestaurantService {
     }
 
     @Transactional
-    public Long update(Long id, RestaurantUpdateRequestDto requestDto) {
+    public Long update(Long id, RestaurantTypeUpdateRequestDto requestDto) {
         Restaurant restaurant = restaurantRepository.findById(id)
                 .orElseThrow(() -> new IllegalArgumentException("해당 레스토랑이 존재하지 않습니다."));
 
@@ -54,5 +54,21 @@ public class RestaurantService {
         return restaurantRepository.findByType(type).stream()
                 .map(RestaurantListResponseDto::new)
                 .collect(Collectors.toList());
+    }
+
+//    @Transactional
+//    public void delete(Long id) {
+//        Restaurant restaurant = restaurantRepository.findById(id)
+//                .orElseThrow(()->new IllegalArgumentException("해당 레스토랑이 존재하지 않습니다."));
+//
+//        restaurantRepository.delete(restaurant);
+//    }
+
+    @Transactional
+    public void delete(Long id) {
+        Restaurant restaurant = restaurantRepository.findById(id)
+                .orElseThrow(() -> new IllegalArgumentException("해당 레스토랑이 존재하지 않습니다."));
+
+        restaurant.deleteEntity();
     }
 }

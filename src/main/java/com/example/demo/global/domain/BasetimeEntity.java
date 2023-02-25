@@ -16,4 +16,10 @@ public abstract class BasetimeEntity {
     @CreatedDate private LocalDateTime createdAt;
 
     @LastModifiedDate private LocalDateTime updatedAt;
+
+    private boolean isDeleted;
+
+    public void deleteEntity() {
+        this.isDeleted = true;
+    }
 }

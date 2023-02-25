@@ -7,11 +7,11 @@ import lombok.NoArgsConstructor;
 
 @Getter
 @NoArgsConstructor
-public class RestaurantUpdateRequestDto {
+public class RestaurantTypeUpdateRequestDto {
     private Type type;
 
     @Builder
-    public RestaurantUpdateRequestDto(Type type) {
+    public RestaurantTypeUpdateRequestDto(Type type) {
         this.type = type;
     }
 }

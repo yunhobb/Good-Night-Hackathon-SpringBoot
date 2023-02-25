@@ -2,7 +2,7 @@ package com.example.demo.domain.restaurant.controller;
 
 import com.example.demo.domain.restaurant.domain.entity.Type;
 import com.example.demo.domain.restaurant.dto.RestaurantCreateRequestDto;
-import com.example.demo.domain.restaurant.dto.RestaurantUpdateRequestDto;
+import com.example.demo.domain.restaurant.dto.RestaurantTypeUpdateRequestDto;
 import com.example.demo.domain.restaurant.dto.response.RestaurantListResponseDto;
 import com.example.demo.domain.restaurant.dto.response.RestaurantResponseDto;
 import com.example.demo.domain.restaurant.service.RestaurantService;
@@ -24,7 +24,7 @@ public class RestaurantController {
     }
 
     @PutMapping("/{id}")
-    public Long update(@PathVariable Long id, @RequestBody RestaurantUpdateRequestDto requestDto) {
+    public Long update(@PathVariable Long id, @RequestBody RestaurantTypeUpdateRequestDto requestDto) {
         return restaurantService.update(id, requestDto);
     }
 
@@ -41,5 +41,11 @@ public class RestaurantController {
     @GetMapping("/categories")
     public List<RestaurantListResponseDto> searchByType(@RequestParam("type") Type type) {
         return restaurantService.searchByType(type);
+    }
+
+    @DeleteMapping("/{id}")
+    public void delete(@PathVariable Long id) {
+//        restaurantService.delete(id);
+        restaurantService.delete(id);
     }
 }
