@@ -37,4 +37,8 @@ public class Restaurant extends BasetimeEntity {
         this.type = type;
         this.isDeleted = false;
     }
+
+    public void update(Type type) {
+        this.type = type;
+    }
 }
