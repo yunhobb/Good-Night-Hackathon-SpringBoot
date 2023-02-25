@@ -4,11 +4,15 @@ import com.example.demo.domain.restaurant.domain.entity.Restaurant;
 import com.example.demo.domain.restaurant.domain.repository.RestaurantRepository;
 import com.example.demo.domain.restaurant.dto.RestaurantCreateRequestDto;
 import com.example.demo.domain.restaurant.dto.RestaurantUpdateRequestDto;
+import com.example.demo.domain.restaurant.dto.response.RestaurantListResponseDto;
 import com.example.demo.domain.restaurant.dto.response.RestaurantResponseDto;
 import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor(access = AccessLevel.PROTECTED)
@@ -23,7 +27,7 @@ public class RestaurantService {
     @Transactional
     public Long update(Long id, RestaurantUpdateRequestDto requestDto) {
         Restaurant restaurant = restaurantRepository.findById(id)
-                .orElseThrow(()-> new IllegalArgumentException("해당 레스토랑이 존재하지 않습니다."));
+                .orElseThrow(() -> new IllegalArgumentException("해당 레스토랑이 존재하지 않습니다."));
 
         restaurant.update(requestDto.getType());
 
@@ -32,8 +36,15 @@ public class RestaurantService {
 
     @Transactional(readOnly = true)
     public RestaurantResponseDto searchById(Long id) {
-        Restaurant restaurant = restaurantRepository.findById(id).orElseThrow(()->new IllegalArgumentException("해당 레스토랑이 존재하지 않습니다."));
+        Restaurant restaurant = restaurantRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("해당 레스토랑이 존재하지 않습니다."));
 
         return new RestaurantResponseDto(restaurant);
+    }
+
+    @Transactional(readOnly = true)
+    public List<RestaurantListResponseDto> searchAll() {
+        return restaurantRepository.findAll().stream()
+                .map(RestaurantListResponseDto::new)
+                .collect(Collectors.toList());
     }
 }
