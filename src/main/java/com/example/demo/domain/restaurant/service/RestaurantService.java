@@ -4,6 +4,7 @@ import com.example.demo.domain.restaurant.domain.entity.Restaurant;
 import com.example.demo.domain.restaurant.domain.repository.RestaurantRepository;
 import com.example.demo.domain.restaurant.dto.RestaurantCreateRequestDto;
 import com.example.demo.domain.restaurant.dto.RestaurantUpdateRequestDto;
+import com.example.demo.domain.restaurant.dto.response.RestaurantResponseDto;
 import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -27,5 +28,12 @@ public class RestaurantService {
         restaurant.update(requestDto.getType());
 
         return id;
+    }
+
+    @Transactional(readOnly = true)
+    public RestaurantResponseDto searchById(Long id) {
+        Restaurant restaurant = restaurantRepository.findById(id).orElseThrow(()->new IllegalArgumentException("해당 레스토랑이 존재하지 않습니다."));
+
+        return new RestaurantResponseDto(restaurant);
     }
 }

@@ -2,6 +2,7 @@ package com.example.demo.domain.restaurant.controller;
 
 import com.example.demo.domain.restaurant.dto.RestaurantCreateRequestDto;
 import com.example.demo.domain.restaurant.dto.RestaurantUpdateRequestDto;
+import com.example.demo.domain.restaurant.dto.response.RestaurantResponseDto;
 import com.example.demo.domain.restaurant.service.RestaurantService;
 import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
@@ -21,5 +22,10 @@ public class RestaurantController {
     @PutMapping("/{id}")
     public Long update(@PathVariable Long id, @RequestBody RestaurantUpdateRequestDto requestDto) {
         return restaurantService.update(id, requestDto);
+    }
+
+    @GetMapping("/{id}")
+    public RestaurantResponseDto searchById(@PathVariable Long id) {
+        return restaurantService.searchById(id);
     }
 }
