@@ -26,7 +26,7 @@ public class ReviewService {
         return requestDto;
     }
 
-//    public void deleteById(Long id) {
-//        reviewRepository.deleteById(id);
-//    }
+    public void deleteById(Long id) {
+        reviewRepository.deleteById(id);
+    }
 }

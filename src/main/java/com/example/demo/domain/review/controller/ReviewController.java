@@ -17,9 +17,9 @@ public class ReviewController {
         return reviewService.create(id, requestDto);
     }
 
-//    @DeleteMapping("/{id}")
-//    public void deleteReview(@PathVariable Long id) {
-//        reviewService.deleteById(id);
-//    }
+    @DeleteMapping("/{id}")
+    public void deleteReview(@PathVariable Long id) {
+        reviewService.deleteById(id);
+    }
 
 }
