@@ -17,6 +17,7 @@ import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor(access = AccessLevel.PROTECTED)
+@Transactional
 public class RestaurantService {
     private final RestaurantRepository restaurantRepository;
 
@@ -64,7 +65,6 @@ public class RestaurantService {
 //        restaurantRepository.delete(restaurant);
 //    }
 
-    @Transactional
     public void delete(Long id) {
         Restaurant restaurant = restaurantRepository.findById(id)
                 .orElseThrow(() -> new IllegalArgumentException("해당 레스토랑이 존재하지 않습니다."));

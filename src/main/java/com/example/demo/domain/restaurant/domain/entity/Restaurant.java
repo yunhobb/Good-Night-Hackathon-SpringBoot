@@ -2,10 +2,7 @@ package com.example.demo.domain.restaurant.domain.entity;
 
 import com.example.demo.domain.review.domain.entity.Review;
 import com.example.demo.global.domain.BasetimeEntity;
-import lombok.AccessLevel;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -13,6 +10,8 @@ import java.util.List;
 
 @Getter
 @Entity
+@Builder
+@AllArgsConstructor
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 //@SQLDelete(sql = "UPDATE restaurant SET deleted = true WHERE id = ?")
 //@Where(clause = "isDeleted = false")
