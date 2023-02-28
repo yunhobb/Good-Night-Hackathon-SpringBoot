@@ -29,4 +29,8 @@ public class ReviewService {
     public void deleteById(Long id) {
         reviewRepository.deleteById(id);
     }
+
+    public ReviewResponseDto findById(long id) {
+
+    }
 }
